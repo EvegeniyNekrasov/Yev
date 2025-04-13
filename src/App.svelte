@@ -1,14 +1,30 @@
 <script lang="ts">
-    import Console from "./lib/Console.svelte";
+    import ConsoleLine from "./lib/ConsoleLine.svelte";
     let commands = $state<string[]>([]);
+    let history = $state<string[]>([]);
 
-    function handleAddCommad(command: string): void {
-        commands.push(command);
+    function handleAddCommand(command: string): void {
+        history.push(command);
+        if (command.trim() === "clear") commands = [];
+        else commands.push(command);
     }
 
     $inspect(commands);
+    $inspect(history);
 </script>
 
-<span class="text-2xl text-red-800">Hello svelte</span>
+{#if commands.length > 0}
+    {#each commands as command}
+        <ConsoleLine
+            isEditable={false}
+            {command}
+            {handleAddCommand}
+        />
+    {/each}
+{/if}
 
-<Console handleClick={handleAddCommad} />
+<ConsoleLine
+    isEditable={true}
+    command={null}
+    {handleAddCommand}
+/>

@@ -1,9 +1,9 @@
-import type { CursorPosition } from "../types/types";
+import type { ICursorPosition } from "../types/types";
 
 export class Position {
-    private static position: CursorPosition = { left: 0, top: 0 };
+    private static position: ICursorPosition = { left: 0, top: 0 };
 
-    public static getPosition(selection: Selection): CursorPosition {
+    public static getPosition(selection: Selection): ICursorPosition {
         if (!selection.rangeCount) return { ...this.position };
 
         const range = selection.getRangeAt(0).cloneRange();

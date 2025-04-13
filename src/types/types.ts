@@ -10,7 +10,7 @@ export interface Route {
 /**
  * A position in the console
  */
-export interface CursorPosition {
+export interface ICursorPosition {
     /**
      * Left cursor position value
      */
